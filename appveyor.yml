@@ -17,8 +17,10 @@ install:
   - cmd: set PATH=%PATH:CMake 2.8\bin=%;C:\Program Files (x86)\cmake-3.0.2-win32-x86\bin
   - cmd: cmake --version
   - cmd: del cmake.zip
-  
+
 environment:
+  app_id: pvr.hts
+
   matrix:
     #- GENERATOR: "Visual Studio 12 2013"
       #CONFIG: Debug
@@ -27,7 +29,6 @@ environment:
       CONFIG: Release
 
 build_script:
-  - set app_id=pvr.hts
   - call "%VS120COMNTOOLS%..\..\VC\bin\vcvars32.bat"
   - set cur_dir=%cd%
   - cd ..
@@ -36,4 +37,4 @@ build_script:
   - mkdir build
   - cd build
   - cmake -G "NMake Makefiles" -DADDONS_TO_BUILD=%app_id% -DCMAKE_BUILD_TYPE=%CONFIG% -DADDON_SRC_PREFIX=../.. -DCMAKE_INSTALL_PREFIX=../../xbmc/addons -DPACKAGE_ZIP=1 ../../xbmc/project/cmake/addons
-  - cmake --build "%cur_dir%\build" --target "%app_id%"
+  - cmake --build "%cur_dir%" --target "%app_id%"
