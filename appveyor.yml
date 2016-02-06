@@ -5,13 +5,6 @@ init:
 - ps: $timestamp = $env:appveyor_repo_commit_timestamp.SubString(0,10)
 - ps: Update-AppveyorBuild -Version ("{0}-{1}-{2}" -f $env:appveyor_repo_branch, $commit, $timestamp)
 
-#branches:
-#    only:
-#      - master
-
-# clone directory
-clone_folder: c:\projects\pvr.hts
-
 # fetch repository as zip archive
 shallow_clone: true                 # default is "false"
 
